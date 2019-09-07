@@ -49,6 +49,17 @@ To complete this lab, you’ll need:
 
 This lab tutorial is designed to be followed by [Cloud Shell Tutorials](https://cloud.google.com/shell/docs/tutorials), so you will be able to open by clicking button in the top of this page (if you didn't already).
 
+You just need to follow all steps that you can find in the menu on the left side of the page. If you closed the Tutorial accidentally, you can restart it by executing in the Cloud Shell the following command:
+
+```bash
+cloudshell launch-tutorial $HOME/jenkins-x-lab/JenkinsXTutorial.md
+```
+
+Also, to be able to create the Kubernetes cluster and work with your project, ensure you have created or selected the GCP project where you want to work:
+
+<walkthrough-project-setup>
+</walkthrough-project-setup>
+
 You can copy all the commands to the shell just by clicking the copy icon.
 
 <walkthrough-cloud-shell-icon>
