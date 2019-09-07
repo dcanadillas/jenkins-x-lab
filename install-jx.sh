@@ -27,9 +27,9 @@ function usage {
 function jxinstall {
     if [[ "$(id -u)" -ne 0 ]] && [[ ! -w $1 ]];then
         echo -e "\nInstalling Jenkins X cli in $1"
-        echo "sudo mv jx-download/jx $1" #Remove echo
+        sudo mv jx-download/jx $1
     else
-        echo "mv jx-download/jx $1" #Remove echo
+        mv jx-download/jx $1
     fi
     $1/jx version -n
     echo -e "\n\tJenkins X cli is already installed in \"$(which jx)\"\n"
