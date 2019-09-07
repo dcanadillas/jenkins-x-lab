@@ -1,6 +1,6 @@
 # Jenkins X introduction
 
-[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/dcanadillas/jenkins-x-lab&tutorial=JenkinsXLab.md)
+[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/dcanadillas/jenkins-x-lab&tutorial=JenkinsXTutorial.md)
 
 [Jenkins X](https://jenkins-x.io/) is the Cloud Native implementation of Jenkins. By leveraging Kubernetes and using CRDs (Custom Resource Definitions) it allows you to execute your CI/CD pipelines with no expert Kubernetes knowledge required. It uses containers orchestration and development buildpacks to automate the development experience to deliver your applications.
 
@@ -34,10 +34,10 @@ GitOps promotions is applied for all the development process to promote the appl
 > Note:
 >     If no parameter is specified Jenkins X by default creates a namespace per environment in the same Kubernetes cluster (jx, jx-staging and jx-production). In this lab this default behaviour is used.But a more real scenario would be using different K8s clusters per environment. This can be done in Jenkins X by using ‘--remote-environments’ parameter when creating the cluster or just ‘--remote’ when editing current environments. This is possible by the Multi-cluster capabilities of Jenkins X_
 
-# Setup
+## Setup
 This lab will create a Kubernetes cluster using Google Container Engine (GKE) and will require connections to GitHub repositories. The following sections detail all the requirements you need in order to follow the Jenkins X lab.
 
-## What you'll need
+### What you'll need
 To complete this lab, you’ll need:
 * A GitHub account to use for the Jenkins X configuration flow. This is mandatory, if you don't have one or you do not want to mess up your existing one, go now and [create one](https://github.com/join)
 * Access to a standard internet browser (Chrome browser recommended).
@@ -45,13 +45,16 @@ To complete this lab, you’ll need:
 * You need a Google Cloud Platform account or project. You can use a [Free Tier Google account to create one](https://cloud.google.com/free/) or your own. 
 * If you already have your own GCP account, bear in mind that charges may apply if Free Tier is expired
 
-## Google Cloud Shell tutorial
+### Google Cloud Shell tutorial
 
-This lab tutorial is designed to be followed by [Cloud Shell Tutorials](https://cloud.google.com/shell/docs/tutorials), so you will be able to open by clicking the following button:
+This lab tutorial is designed to be followed by [Cloud Shell Tutorials](https://cloud.google.com/shell/docs/tutorials), so you will be able to open by clicking button in the top of this page (if you didn't already).
 
-[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/dcanadillas/jenkins-x-lab&tutorial=JenkinsXLab.md#'Install the JenkinsX jx binary')
+You can copy all the commands to the shell just by clicking the copy icon.
 
-You can also follow by reading this Markdown document and executing the commands in your Google Cloud Shell:
+<walkthrough-cloud-shell-icon>
+</walkthrough-cloud-shell-icon>
+
+You can also follow by reading this Markdown document locally or [in GitHub](https://github.com/dcanadillas/jenkins-x-lab/) and executing the commands in your Google Cloud Shell:
 
 * Open your [Google Console](https://console.cloud.google.com)
 * Select or create the project where you are going to work in Google Cloud Platform
@@ -64,12 +67,7 @@ You can also follow by reading this Markdown document and executing the commands
   
   ![Cloud Shell Prompt](https://raw.githubusercontent.com/dcanadillas/jenkins-x-lab/master/images/CloudShell_ProjectPrompt.png)
 
-If you follow this lab from the Google Cloud Shell Tutorial, you can copy all the commands to the shell just by clicking the copy icon.
-
-<walkthrough-cloud-shell-icon>
-</walkthrough-cloud-shell-icon>
-
-# Install the Jenkins X CLI binary
+## Install the Jenkins X CLI binary
 
 There is a script included in this repo to install Jenkins X CLI depending on your platform (Linux or MacOS) and the Jenkins X distribution (CloudBees or OSS). For this lab we are using Jenkins OSS, so just execute the following to install CLI version 2.0.643:
 
@@ -120,11 +118,11 @@ If you want to work with the CloudBees Jenkins X Distribution, you can do it by:
 
 You can find also the [manual steps to install Jenkins X CLI](https://jenkins-x.io/getting-started/install/) in Jenkins X documentation
 
-# Create a Cluster
+## Create a Cluster
 
 We are going to create a Kubernetes cluster with a Jenkins X platform deployed using the Jenkins X CLI. You will see that having a ready CI/CD Cloud Native platform from scratch is just a matter of minutes by executing some easy commands from the CLI.
 
-## Prepare the environment
+### Prepare the environment
 Make sure the Google Cloud project you're working on is the one selected in the Cloud Web Console. This should be the case if you opened Cloud Shell with the right project selected:
 
 ```bash
@@ -150,7 +148,7 @@ Now that your project ID is set, export the value to a shell variable for later 
 export PROJECT_ID=$(gcloud config get-value project)
 ```
 
-## Create the cluster and install Jenkins X
+### Create the cluster and install Jenkins X
 
 Let's create a GKE cluster to host Jenkins X. To create the cluster, run the jx tool with the following options, substituting the zone for one that's more suitable to you depending on your physical location:
 
@@ -160,11 +158,11 @@ jx create cluster gke --no-tiller --skip-login --default-admin-password=admin --
 
 This command is interactive; it will guide you through creating a cluster on GKE by prompting you to answer some questions. Read on to know how to continue.
 
-### Missing Dependencies
+#### Missing Dependencies
 
 The jx command will attempt to locate any required dependencies first (particularly, Helm), if it discovers that some are missing (it will ask you to install helm, for example) it will prompt to install them for you in the ~/.jx/bin folder. Just answer yes for jx to install whatever dependencies are required.
 
-### Configure you cluster
+#### Configure you cluster
 
 Follow the prompt to provide the following answers:
 * Google Cloud Machine Type: n1-standard-2
@@ -183,7 +181,7 @@ Output (do not copy)
 INFO[0244] Creating cluster...
 ```
 
-### GitHub Connectivity and default workload
+#### GitHub Connectivity and default workload
 
 Once the cluster is created, the jx execution continues and you will be prompted for some configuration options. There will be some delays between prompts when the jx command proceeds with different installation actions; just follow these answers for the different steps and you should be good to go:
 1. Select Jenkins installation type:  **Serverless Jenkins X Pipelines with Tekton**
@@ -201,7 +199,6 @@ Now the installer will take a bit of time before continuing with the next steps.
 12. Select the organization where you want to create the environment repository: **select here the GitHub organization you have already configured**
 
 > **Note:** the nip.io service you just used is just a way to have a static domain based on your IP.
-
 
 The jx command should exit successfully showing an output similar to this:
 
@@ -236,12 +233,11 @@ tide          tide.jx.104.155.99.229.nip.io          104.155.99.229   80      3m
 
 Note the admin password shown by the end of the installation as you'll be using it afterwards (it should be admin).
 
-
 > **Note:** You can check the passwords of the installation process in the file ádminsecrets.yaml’ that is saved in the Jenkins X local configuration directory ‘$HOME/.jx’. Check the secrets by:
 > 
 > `cat ~/.jx/adminSecrets.yaml`
 
-### What did Jenkins X just install?
+#### What did Jenkins X just install?
 
 Jenkins X installs different components in order to orchestrate Cloud Native CI/CD. These can be summarized conceptually as:
 * Prow (Serverless Jenkins X): A webhook handler that listens to GitHub events and that uses ChatOps to trigger jobs to execute your pipeline
@@ -330,7 +326,7 @@ Note the following details in the PROMOTE column:
 
 SOURCE column reflects the corresponding environment configuration git repo.
 
-# Create a Quickstart Project
+## Create a Quickstart Project
 
 Quickstarts are very basic pre-made applications you can start a project from, instead of creating a project from scratch. You can create new applications from a list of curated Quickstart applications via the jx create quickstart command.
 Let's do that, but before creating our quickstart application create first a directory to store your work:
@@ -463,11 +459,11 @@ jx-go-http  0.0.1   1/1  http://jx-go-http.jx-staging.35.187.61.201.nip.io
 googlece33001_student@cs-6000-devshell-vm-cf22e372-df56-4e51-bb3c-7ebda2af30ed:~/jx-gke-lab/jx-go-http$
 ```
 
-# Doing a pull request
+## Doing a pull request
 
 Once we checked that our first 0.0.1 version is deployed into Staging, let’s change our application in a different git branch and create a pull request to merge into master.
 
-## Creating the GitHub Pull Request
+### Creating the GitHub Pull Request
 
 Let’s get into the local git repo:
 
@@ -523,7 +519,7 @@ Here you have some screenshots to see the process:
 > 
 > Open then the link that is the output of the command and you go directly to the pull request created.
 
-## Preview the application and approve the Pull Request
+### Preview the application and approve the Pull Request
 
 Once the Pull Request is created on GitHub we sould use the Prow commands to approve the pull request via ChatOps, so then the merge and pipelines are triggered automatically once one of the approvers in the “OWNERS” file of the application repo select `/approve` or `/lgtm` (Looks Good to Me). 
 
@@ -644,7 +640,7 @@ jx open jx-go-http -e staging
 
 If we open the output url shown from the previous output in a browser tab the new version 0.0.2 of the application with the changes is shown.
 
-# Promote to Production
+## Promote to Production
 
 Let’s check the current releases that are deployed on the whole cluster:
 
@@ -717,10 +713,12 @@ APPLICATION    STAGING PODS URL                                                 
 jx-go-http     0.0.2   1/1  http://jx-go-http.jx-staging.35.189.194.245.nip.ioo   0.0.2      1/1  http://jx-go-http.jx-production.35.189.194.245.nip.io
 ```
 
-
 Congratulations! You have finished this lab.
 
-# Cleaning Up
+<walkthrough-conclusion-trophy>
+</walkthrough-conclusion-trophy>
+
+## Cleaning Up
 
 If you want to leave your GitHub as it is was before doing this lab, you just need to delete the repos jx created for you here:
 
