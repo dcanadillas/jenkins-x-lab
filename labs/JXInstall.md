@@ -49,6 +49,6 @@ If you want to work with the CloudBees Jenkins X Distribution, you can do it by:
 
 You can find also the [manual steps to install Jenkins X CLI](https://jenkins-x.io/getting-started/install/) in Jenkins X documentation
 
-Now you can go to the [next section](./labs/JXCreateCluster.md):
+Now you can go to the [next section](./JXCreateCluster.md):
 
 <!-- [![Setup your environment](https://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/dcanadillas/jenkins-x-lab&tutorial=labs/JXInstall.md) -->

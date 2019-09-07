@@ -208,6 +208,6 @@ Note the following details in the PROMOTE column:
 
 SOURCE column reflects the corresponding environment configuration git repo.
 
-Now you can go to the [next section](./labs/JXQuickstart.md):
+Now you can go to the [next section](./JXQuickstart.md):
 
 <!-- [![Setup your environment](https://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/dcanadillas/jenkins-x-lab&tutorial=labs/JXQuickstart.md) -->

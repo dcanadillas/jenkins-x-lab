@@ -73,4 +73,4 @@ jx-go-http     0.0.2   1/1  http://jx-go-http.jx-staging.35.189.194.245.nip.ioo 
 
 Congratulations! You have finished this lab.
 
-If you want to clean your environment go to [Clean Up section](./labs/CleanUp.md):
+If you want to clean your environment go to [Clean Up section](./CleanUp.md):

@@ -34,6 +34,6 @@ GitOps promotions is applied for all the development process to promote the appl
 > **Note:**
 > If no parameter is specified Jenkins X by default creates a namespace per environment in the same Kubernetes cluster (jx, jx-staging and jx-production). In this lab this default behaviour is used.But a more real scenario would be using different K8s clusters per environment. This can be done in Jenkins X by using ‘--remote-environments’ parameter when creating the cluster or just ‘--remote’ when editing current environments. This is possible by the Multi-cluster capabilities of Jenkins X_
 
-Now you can go to the [next section](./labs/JXInstall.md):
+Now you can go to the [next section](./JXInstall.md):
 
 <!-- [![Setup your environment](https://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/dcanadillas/jenkins-x-lab&tutorial=labs/JXInstall.md) -->

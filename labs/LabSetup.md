@@ -36,6 +36,6 @@ If you follow this lab from the Google Cloud Shell Tutorial, you can copy all th
 <walkthrough-cloud-shell-icon>
 </walkthrough-cloud-shell-icon>
 
-Now you can [start the Jenkins X lab](./labs/JXIntro.md):
+Now you can [start the Jenkins X lab](./JXIntro.md):
 
 [![Setup your environment](https://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/dcanadillas/jenkins-x-lab&tutorial=labs/JXIntro.md)

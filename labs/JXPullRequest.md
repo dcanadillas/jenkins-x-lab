@@ -179,6 +179,6 @@ jx open jx-go-http -e staging
 
 If we open the output url shown from the previous output in a browser tab the new version 0.0.2 of the application with the changes is shown.
 
-Now you can go to the [next section](./labs/JXPromotion.md):
+Now you can go to the [next section](./JXPromotion.md):
 
 <!-- [![Setup your environment](https://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/dcanadillas/jenkins-x-lab&tutorial=labs/JXPromotion.md) -->

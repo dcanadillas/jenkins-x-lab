@@ -131,6 +131,6 @@ jx-go-http  0.0.1   1/1  http://jx-go-http.jx-staging.35.187.61.201.nip.io
 googlece33001_student@cs-6000-devshell-vm-cf22e372-df56-4e51-bb3c-7ebda2af30ed:~/jx-gke-lab/jx-go-http$
 ```
 
-Now you can go to the [next section](./labs/JXPullRequest.md):
+Now you can go to the [next section](./JXPullRequest.md):
 
 <!-- [![Setup your environment](https://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/dcanadillas/jenkins-x-lab&tutorial=labs/JXPullRequest.md) -->
