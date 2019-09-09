@@ -1,6 +1,6 @@
 # Jenkins X introduction
 
-[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/dcanadillas/jenkins-x-lab&tutorial=JenkinsXTutorial.md)
+[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/dcanadillas/jenkins-x-workshop&tutorial=JenkinsXTutorial.md)
 
 [Jenkins X](https://jenkins-x.io/) is the Cloud Native implementation of Jenkins. By leveraging Kubernetes and using CRDs (Custom Resource Definitions) it allows you to execute your CI/CD pipelines with no expert Kubernetes knowledge required. It uses containers orchestration and development buildpacks to automate the development experience to deliver your applications.
 
@@ -25,7 +25,7 @@ In this lab you will use Jenkins X as the Cloud Native CI/CD orchestrator to dep
 
 GitOps promotions is applied for all the development process to promote the application:
 
-[![GitOps Image](https://raw.githubusercontent.com/dcanadillas/jenkins-x-lab/master/images/JXGitOps.png)](https://raw.githubusercontent.com/dcanadillas/jenkins-x-lab/master/images/JXGitOps.png)
+[![GitOps Image](https://raw.githubusercontent.com/dcanadillas/jenkins-x-workshop/master/images/JXGitOps.png)](https://raw.githubusercontent.com/dcanadillas/jenkins-x-workshop/master/images/JXGitOps.png)
 
 * By creating a Pull Request the preview chart included in the buildpack is applied and deployed in a namespace that Jenkins X creates automatically as Preview Environment
 * When the pull request is merged (it is done automatically in serverless by using ChatOps in GitHub) Jenkins X deploys into Staging by changing the version in Staging Git repo and then deploying the application chart in the staging namespace in Kubernetes
@@ -52,7 +52,7 @@ This lab tutorial is designed to be followed by [Cloud Shell Tutorials](https://
 You just need to follow all steps that you can find in the menu on the left side of the page. If you closed the Tutorial accidentally, you can restart it by executing in the Cloud Shell the following command:
 
 ```bash
-cloudshell launch-tutorial $HOME/jenkins-x-lab/JenkinsXTutorial.md
+cloudshell launch-tutorial $HOME/jenkins-x-workshop/JenkinsXTutorial.md
 ```
 
 Also, to be able to create the Kubernetes cluster and work with your project, ensure you have created or selected the GCP project where you want to work:
@@ -65,67 +65,79 @@ You can copy all the commands to the shell just by clicking the copy icon.
 <walkthrough-cloud-shell-icon>
 </walkthrough-cloud-shell-icon>
 
-You can also follow by reading this Markdown document locally or [in GitHub](https://github.com/dcanadillas/jenkins-x-lab/) and executing the commands in your Google Cloud Shell:
+You can also follow by reading this Markdown document locally or [in GitHub](https://github.com/dcanadillas/jenkins-x-workshop/) and executing the commands in your Google Cloud Shell:
 
 * Open your [Google Console](https://console.cloud.google.com)
 * Select or create the project where you are going to work in Google Cloud Platform
   
-  ![Select Projec](https://raw.githubusercontent.com/dcanadillas/jenkins-x-lab/master/images/Select_GCP_Project.png)
+  ![Select Projec](https://raw.githubusercontent.com/dcanadillas/jenkins-x-workshop/master/images/Select_GCP_Project.png)
 * Open Google Cloud Shell terminal
   
-  ![Cloud Shell](https://raw.githubusercontent.com/dcanadillas/jenkins-x-lab/master/images/OpenCloudShell.png)
+  ![Cloud Shell](https://raw.githubusercontent.com/dcanadillas/jenkins-x-workshop/master/images/OpenCloudShell.png)
 * Work in your terminal and check that you are in the right project
   
-  ![Cloud Shell Prompt](https://raw.githubusercontent.com/dcanadillas/jenkins-x-lab/master/images/CloudShell_ProjectPrompt.png)
+  ![Cloud Shell Prompt](https://raw.githubusercontent.com/dcanadillas/jenkins-x-workshop/master/images/CloudShell_ProjectPrompt.png)
 
 ## Install the Jenkins X CLI binary
 
-There is a script included in this repo to install Jenkins X CLI depending on your platform (Linux or MacOS) and the Jenkins X distribution (CloudBees or OSS). For this lab we are using Jenkins OSS, so just execute the following to install CLI version 2.0.643:
+There is a script included in this repo to install Jenkins X CLI depending on your platform (Linux or MacOS) and the Jenkins X distribution (CloudBees or OSS). For this lab we are using Jenkins OSS, so just execute the following to install CLI version 2.0.420 (Please, **see the note below if you want to work with the latest version**):
 
 ```bash
-./install-jx.sh -v 2.0.643
+./install-jx.sh -v 2.0.420
 ```
 
-Output (do not copy)
+Similar expected output (do not copy)
 
 ```
-Installing Jenkins X OSS version 2.0.643.
+Installing Jenkins X OSS version 2.0.420.
 
-You are installing Jenkins X in: 
+You are installing Jenkins X in:
 
-ProductName:    Mac OS X
-ProductVersion: 10.14.6
-BuildVersion:   18G87
-Downloading and installing binary...
-
+Linux cs-6000-devshell-vm-611f5e84-e0c1-4e98-b78c-df847b5232a9 4.19.44+ #1 SMP Tue Jul 30 23:06:26 PDT 2019 x86_64 GNU/Linux
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-100   613    0   613    0     0   1532      0 --:--:-- --:--:-- --:--:--  1536
-  0 62.9M    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0x LICENSE
-x README.md
-x changelog.md
-100 62.9M  100 62.9M    0     0  13.6M      0  0:00:04  0:00:04 --:--:-- 17.1M
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0LICENSE
+jx
+100 62.3M  100 62.3M    0     0  17.6M      0  0:00:03  0:00:03 --:--:-- 17.6M
 
-WARNING: Failed to find helm installs: running helm list --all --namespace cbcore: failed to run 'helm list --all --namespace cbcore' command in directory '', output: 'Error: could not find a ready tiller pod'
-WARNING: Failed to get helm version: failed to run 'helm version --short' command in directory '', output: 'Client: v2.13.1+g618447c
-Error: could not find a ready tiller pod'
+Installing Jenkins X cli in /usr/local/bin
 NAME               VERSION
-jx                 2.0.643
-Kubernetes cluster v1.12.7-gke.25
-kubectl            v1.14.1
-git                2.21.0
-Operating System   Mac OS X 10.14.6 build 18G87
+jx                 2.0.420
+Kubernetes cluster v1.12.8-gke.10
+kubectl            v1.13.3
+helm client        Client: v2.14.1+g5270352
+git                2.23.0
+Operating System   Debian GNU/Linux 9.9 (stretch)
 
         Jenkins X cli is already installed in "/usr/local/bin/jx"
 
 Activating the Jenkins X Profile
 ```
 
-If you want to work with the CloudBees Jenkins X Distribution, you can do it by:
-
-```bash
-./install-jx -c
-```
+> **Note:**
+> You can work with the latest version of Jenkins X OSS or CloudBees Jenkins X Distribution, but in this case you will need to upgrade the Git version installed in the Google Cloud Shell. The git version required is 2.15+. You can upgrade the Git client in the shell by doing the following:
+> ```
+> $ sudo apt update
+> $ sudo apt install make libssl-dev libghc-zlib-dev libcurl4-gnutls-dev libexpat1-dev gettext unzip
+> $ cd /usr/src/
+> $ sudo wget https://github.com/git/git/archive/v2.23.0.tar.gz -O git.tar.gz
+> $ sudo tar -xf git.tar.gz
+> $ cd git-2.23.0/
+> $ sudo make prefix=/usr/local all
+> $ sudo make prefix=/usr/local install
+> $ git version
+> ```
+> 
+> If you want to work with the CloudBees Jenkins X Distribution, you can do it by:
+> 
+> ```bash
+> ./install-jx -c
+> ```
+> 
+> And if you want to work with the latest OSS version:
+> ```bash
+> ./install-jx
+> ```
 
 You can find also the [manual steps to install Jenkins X CLI](https://jenkins-x.io/getting-started/install/) in Jenkins X documentation
 
@@ -520,9 +532,9 @@ Now we are ready to create the Pull Request (PR). So, let’s use the GitHub web
 
 Here you have some screenshots to see the process:
 
-![Compare and PR in GirHub](https://raw.githubusercontent.com/dcanadillas/jenkins-x-lab/master/images/GitHubPR.png)
+![Compare and PR in GirHub](https://raw.githubusercontent.com/dcanadillas/jenkins-x-workshop/master/images/GitHubPR.png)
 
-![Create a GitHub PR](https://raw.githubusercontent.com/dcanadillas/jenkins-x-lab/master/images/GHCreatePR.png)
+![Create a GitHub PR](https://raw.githubusercontent.com/dcanadillas/jenkins-x-workshop/master/images/GHCreatePR.png)
 
 > **Note:** Instead of using GitHub web console you can also create the pull request directly from Jenkins X with the following command
 > 
@@ -537,15 +549,15 @@ Once the Pull Request is created on GitHub we sould use the Prow commands to app
 The following actions happened automatically when we created the PR:
 * An approval notifier is saying that “This PR is NOT APPROVED” and suggest some ChatOps commands that can be used from Prow
   
-![Approval Notifier in GitHub](https://raw.githubusercontent.com/dcanadillas/jenkins-x-lab/master/images/GHPRApprovalNotifier.png)
+![Approval Notifier in GitHub](https://raw.githubusercontent.com/dcanadillas/jenkins-x-workshop/master/images/GHPRApprovalNotifier.png)
   
 * Then, a size label is attached to the change proposed in the PR (size/XS) in this case
 
-![Automated Jenkins X label](https://raw.githubusercontent.com/dcanadillas/jenkins-x-lab/master/images/GHLabel.png)
+![Automated Jenkins X label](https://raw.githubusercontent.com/dcanadillas/jenkins-x-workshop/master/images/GHLabel.png)
 
 * After a minute more or less a Preview environment is created and deployed
 
-![Automated Jenkins X label](https://raw.githubusercontent.com/dcanadillas/jenkins-x-lab/master/images/GHPreviewPR.png)
+![Automated Jenkins X label](https://raw.githubusercontent.com/dcanadillas/jenkins-x-workshop/master/images/GHPreviewPR.png)
 
 Check the progress of the PR build:
 
@@ -599,7 +611,7 @@ In this lab we didn’t configure a different GitHub user to act as “a bot” 
 > During the installation process you could have configured a different GitHub user for the “Pipeline Server”. This user then act as a “bot” to generate the comments automatically in the Pull Request to work with Prow.
 > 
 > Then, you could approve a pull request just by commenting “/approve” in the PR messages if you are one of the approvers defined in the repo `OWNERS` file.
-> ![Approve Prow command in GitHub](https://raw.githubusercontent.com/dcanadillas/jenkins-x-lab/master/images/ApproveProw.png)
+> ![Approve Prow command in GitHub](https://raw.githubusercontent.com/dcanadillas/jenkins-x-workshop/master/images/ApproveProw.png)
 
 This should trigger the promotion pipeline into Staging. Let’s check the execution:
 

@@ -16,7 +16,7 @@ To complete this lab, you’ll need:
 
 This lab tutorial is designed to be followed by [Cloud Shell Tutorials](https://cloud.google.com/shell/docs/tutorials), so you will be able to open by clicking the following button:
 
-[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/dcanadillas/jenkins-x-lab&tutorial=labs/JXIntro.md)
+[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/dcanadillas/jenkins-x-lab&tutorial=labs/JenkinsXTutorial.md)
 
 You can also follow by reading this Markdown document locally or [in GitHub](https://github.com/dcanadillas/jenkins-x-lab) and executing the commands in your Google Cloud Shell:
 
@@ -38,4 +38,4 @@ If you follow this lab from the Google Cloud Shell Tutorial, you can copy all th
 
 Now you can [start the Jenkins X lab](./JXIntro.md):
 
-[![Setup your environment](https://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/dcanadillas/jenkins-x-lab&tutorial=labs/JXIntro.md)
+[![Setup your environment](https://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/dcanadillas/jenkins-x-lab&tutorial=labs/JenkinsXTutorial.md)

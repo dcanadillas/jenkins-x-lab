@@ -1,0 +1,32 @@
+==================================================================
+CloudBees Days Jenkins X Workshop
+==================================================================
+
+To get started, you will need to install all required dependencies.  To do this
+run the script as the f:
+
+Usage: ./install-jx.sh [-v <version>] [-c]
+    Optional parameters:
+    -c :           If you want to install CloudBees Jenkins X Distribution. 
+    It installs just the last CJXD version, ignoring any version selected.
+    -v <version> : Installs the OSS specific version of Jenkins X
+
+This script will install Jenkins X CLI in `/usr/local/bin`.
+If there is an existing version in your system it will ask you to replace it.
+
+Examples:
+
+- Installing Jenkins X latest OSS version:
+
+    `./install-jx.sh`
+
+- Installing Jenkins X OSS version 2.0.521:
+
+    `./install-jx.sh -v 2.0.521`
+
+- Installing CloudBees Jenkins X Distribution:
+
+    `./install-jx.sh -c` 
+
+
+Enjoy...

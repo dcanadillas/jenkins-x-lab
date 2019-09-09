@@ -1,6 +1,6 @@
 # Jenkins X introduction
 
-[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/dcanadillas/jenkins-x-lab&tutorial=JenkinsXLab.md)
+[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/dcanadillas/jenkins-x-workshop&tutorial=JenkinsXLab.md)
 
 [Jenkins X](https://jenkins-x.io/) is the Cloud Native implementation of Jenkins. By leveraging Kubernetes and using CRDs (Custom Resource Definitions) it allows you to execute your CI/CD pipelines with no expert Kubernetes knowledge required. It uses containers orchestration and development buildpacks to automate the development experience to deliver your applications.
 
@@ -25,7 +25,7 @@ In this lab you will use Jenkins X as the Cloud Native CI/CD orchestrator to dep
 
 GitOps promotions is applied for all the development process to promote the application:
 
-[![GitOps Image](https://raw.githubusercontent.com/dcanadillas/jenkins-x-lab/master/images/JXGitOps.png)](https://raw.githubusercontent.com/dcanadillas/jenkins-x-lab/master/images/JXGitOps.png)
+[![GitOps Image](https://raw.githubusercontent.com/dcanadillas/jenkins-x-workshop/master/images/JXGitOps.png)](https://raw.githubusercontent.com/dcanadillas/jenkins-x-workshop/master/images/JXGitOps.png)
 
 * By creating a Pull Request the preview chart included in the buildpack is applied and deployed in a namespace that Jenkins X creates automatically as Preview Environment
 * When the pull request is merged (it is done automatically in serverless by using ChatOps in GitHub) Jenkins X deploys into Staging by changing the version in Staging Git repo and then deploying the application chart in the staging namespace in Kubernetes
@@ -49,20 +49,20 @@ To complete this lab, you’ll need:
 
 This lab tutorial is designed to be followed by [Cloud Shell Tutorials](https://cloud.google.com/shell/docs/tutorials), so you will be able to open by clicking the following button:
 
-[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/dcanadillas/jenkins-x-lab&tutorial=JenkinsXLab.md#'Install the JenkinsX jx binary')
+[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/dcanadillas/jenkins-x-workshop&tutorial=JenkinsXLab.md#'Install the JenkinsX jx binary')
 
 You can also follow by reading this Markdown document and executing the commands in your Google Cloud Shell:
 
 * Open your [Google Console](https://console.cloud.google.com)
 * Select or create the project where you are going to work in Google Cloud Platform
   
-  ![Select Projec](https://raw.githubusercontent.com/dcanadillas/jenkins-x-lab/master/images/Select_GCP_Project.png)
+  ![Select Projec](https://raw.githubusercontent.com/dcanadillas/jenkins-x-workshop/master/images/Select_GCP_Project.png)
 * Open Google Cloud Shell terminal
   
-  ![Cloud Shell](https://raw.githubusercontent.com/dcanadillas/jenkins-x-lab/master/images/OpenCloudShell.png)
+  ![Cloud Shell](https://raw.githubusercontent.com/dcanadillas/jenkins-x-workshop/master/images/OpenCloudShell.png)
 * Work in your terminal and check that you are in the right project
   
-  ![Cloud Shell Prompt](https://raw.githubusercontent.com/dcanadillas/jenkins-x-lab/master/images/CloudShell_ProjectPrompt.png)
+  ![Cloud Shell Prompt](https://raw.githubusercontent.com/dcanadillas/jenkins-x-workshop/master/images/CloudShell_ProjectPrompt.png)
 
 If you follow this lab from the Google Cloud Shell Tutorial, you can copy all the commands to the shell just by clicking the copy icon.
 
@@ -251,7 +251,7 @@ Jenkins X installs different components in order to orchestrate Cloud Native CI/
 * Monocular: UI used for discovering and running Helm charts
 The more detailed architecture of Jenkins X using Tekton (Serverless Jenkins X) can be described below:
 
-![Tekton Jenkins X Architecture](https://raw.githubusercontent.com/dcanadillas/jenkins-x-lab/master/images/TektonJXArch.png)
+![Tekton Jenkins X Architecture](https://raw.githubusercontent.com/dcanadillas/jenkins-x-workshop/master/images/TektonJXArch.png)
 
 This is deployed to different pods and services in our development ‘jx’ namespace. So, let's take a look at what got installed based on the previous architecture diagram:
 
@@ -513,9 +513,9 @@ Now we are ready to create the Pull Request (PR). So, let’s use the GitHub web
 
 Here you have some screenshots to see the process:
 
-![Compare and PR in GirHub](https://raw.githubusercontent.com/dcanadillas/jenkins-x-lab/master/images/GitHubPR.png)
+![Compare and PR in GirHub](https://raw.githubusercontent.com/dcanadillas/jenkins-x-workshop/master/images/GitHubPR.png)
 
-![Create a GitHub PR](https://raw.githubusercontent.com/dcanadillas/jenkins-x-lab/master/images/GHCreatePR.png)
+![Create a GitHub PR](https://raw.githubusercontent.com/dcanadillas/jenkins-x-workshop/master/images/GHCreatePR.png)
 
 > **Note:** Instead of using GitHub web console you can also create the pull request directly from Jenkins X with the following command
 > 
@@ -530,15 +530,15 @@ Once the Pull Request is created on GitHub we sould use the Prow commands to app
 The following actions happened automatically when we created the PR:
 * An approval notifier is saying that “This PR is NOT APPROVED” and suggest some ChatOps commands that can be used from Prow
   
-![Approval Notifier in GitHub](https://raw.githubusercontent.com/dcanadillas/jenkins-x-lab/master/images/GHPRApprovalNotifier.png)
+![Approval Notifier in GitHub](https://raw.githubusercontent.com/dcanadillas/jenkins-x-workshop/master/images/GHPRApprovalNotifier.png)
   
 * Then, a size label is attached to the change proposed in the PR (size/XS) in this case
 
-![Automated Jenkins X label](https://raw.githubusercontent.com/dcanadillas/jenkins-x-lab/master/images/GHLabel.png)
+![Automated Jenkins X label](https://raw.githubusercontent.com/dcanadillas/jenkins-x-workshop/master/images/GHLabel.png)
 
 * After a minute more or less a Preview environment is created and deployed
 
-![Automated Jenkins X label](https://raw.githubusercontent.com/dcanadillas/jenkins-x-lab/master/images/GHPreviewPR.png)
+![Automated Jenkins X label](https://raw.githubusercontent.com/dcanadillas/jenkins-x-workshop/master/images/GHPreviewPR.png)
 
 Check the progress of the PR build:
 
@@ -592,7 +592,7 @@ In this lab we didn’t configure a different GitHub user to act as “a bot” 
 > During the installation process you could have configured a different GitHub user for the “Pipeline Server”. This user then act as a “bot” to generate the comments automatically in the Pull Request to work with Prow.
 > 
 > Then, you could approve a pull request just by commenting “/approve” in the PR messages if you are one of the approvers defined in the repo `OWNERS` file.
-> ![Approve Prow command in GitHub](https://raw.githubusercontent.com/dcanadillas/jenkins-x-lab/master/images/ApproveProw.png)
+> ![Approve Prow command in GitHub](https://raw.githubusercontent.com/dcanadillas/jenkins-x-workshop/master/images/ApproveProw.png)
 
 This should trigger the promotion pipeline into Staging. Let’s check the execution:
 
